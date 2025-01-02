@@ -6,11 +6,29 @@
 /*   By: aalahyan <aalahyan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 21:43:34 by aalahyan          #+#    #+#             */
-/*   Updated: 2024/12/31 20:53:50 by aalahyan         ###   ########.fr       */
+/*   Updated: 2025/01/02 12:42:14 by aalahyan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static void	add_to_stack(t_stack **to, t_stack *new_elem)
+{
+	if (!*to)
+	{
+		*to = new_elem;
+		new_elem->next = new_elem;
+		new_elem->prev = new_elem;
+	}
+	else
+	{
+		new_elem->next = *to;
+		new_elem->prev = (*to)->prev;
+		(*to)->prev->next = new_elem;
+		(*to)->prev = new_elem;
+		*to = new_elem;
+	}
+}
 
 void	push(t_stack **from, t_stack **to, char which)
 {
@@ -27,20 +45,7 @@ void	push(t_stack **from, t_stack **to, char which)
 		(*from)->prev = temp->prev;
 		temp->prev->next = *from;
 	}
-	if (!*to)
-	{
-		*to = temp;
-		temp->next = temp;
-		temp->prev = temp;
-	}
-	else
-	{
-		temp->next = *to;
-		temp->prev = (*to)->prev;
-		(*to)->prev->next = temp;
-		(*to)->prev = temp;
-		*to = temp;
-	}
+	add_to_stack(to, temp);
 	ft_printf("p%c\n", which);
 }
 
@@ -79,20 +84,4 @@ void	reverse_rotate(t_stack **stack, char which, bool print)
 	*stack = (*stack)->prev;
 	if (print)
 		ft_printf("rr%c\n", which);
-}
-
-void	multiple_moves(t_stack **a, t_stack **b, char *move)
-{
-	if (ft_strncmp(move, "r", 2) == 0)
-	{
-		rotate(a, 'a', false);
-		rotate(b, 'b', false);
-		ft_printf("rr\n");
-	}
-	else
-	{
-		reverse_rotate(a, 'a', false);
-		reverse_rotate(b, 'b', false);
-		ft_printf("rrr\n");
-	}
 }

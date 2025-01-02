@@ -6,14 +6,14 @@
 #    By: aalahyan <aalahyan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/24 16:23:56 by aalahyan          #+#    #+#              #
-#    Updated: 2024/12/31 23:12:37 by aalahyan         ###   ########.fr        #
+#    Updated: 2025/01/01 22:34:01 by aalahyan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 CC=cc
 BINDIR=bin
-CFLAGS=-Wall -Wextra -Werror #-fsanitize=address -g
+CFLAGS=-Wall -Wextra -Werror
 CFILES=		ft_atoi.c\
 			ft_bzero.c\
 			ft_calloc.c\
@@ -68,10 +68,10 @@ CFILES=		ft_atoi.c\
 			print_string_bonus.c\
 			print_unsigned_number_bonus.c\
 			utils_printf_2_bonus.c\
-			utils_printf_bonus.c\
+			utils_printf_bonus.c \
 			ft_printf_bonus.c
 
-OFILES = $(addprefix $(BINDIR)/, $(CFILES:.c=.o))
+OFILES = $(CFILES:%.c=$(BINDIR)/%.o)
 
 
 HEADERFILE= libft.h
@@ -79,10 +79,7 @@ HEADERFILE= libft.h
 NAME = libft.a 
 
 all: inform $(BINDIR) $(NAME)
-	@echo "\033[1;32mLibft compiled successfully!\033[0m"
-
-inform:
-	@echo "\033[1;33mCompiling libft...\033[0m"
+	@echo "\033[1;32m>>Libft compiles successfully!\033[0m"
 
 bonus: $(BINDIR) $(NAME)
 
@@ -95,11 +92,17 @@ $(BINDIR)/%.o: %.c $(HEADERFILE)
 $(BINDIR):
 	@mkdir -p $@
 clean: 
-	@rm -rf $(BINDIR) 
+	@rm -rf $(BINDIR)
+	@echo "\033[1;33m>>libft Cleaned!\033[0m"
 
 fclean: clean
 	@rm -f $(NAME)
+	
+
+inform:
+	@echo "\033[1;33m>>Compiling Libft...\033[0m"
+
 
 re : fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re inform

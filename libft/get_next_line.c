@@ -6,7 +6,7 @@
 /*   By: aalahyan <aalahyan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 14:38:07 by aalahyan          #+#    #+#             */
-/*   Updated: 2024/12/11 20:05:30 by aalahyan         ###   ########.fr       */
+/*   Updated: 2025/01/01 22:37:09 by aalahyan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static char	*gnl_extract_rest(char *rest, int fd)
 		if (ret_val < 0)
 			return (gnl_free_and_null(buffer, rest));
 		buffer[ret_val] = 0;
-		rest = ft_strjoin(rest, buffer);
+		rest = ft_strjoin_gnl(rest, buffer);
 		if (!rest)
 			return (gnl_free_and_null(buffer, NULL));
 	}

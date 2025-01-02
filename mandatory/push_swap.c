@@ -6,11 +6,27 @@
 /*   By: aalahyan <aalahyan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 15:42:28 by aalahyan          #+#    #+#             */
-/*   Updated: 2024/12/31 20:41:12 by aalahyan         ###   ########.fr       */
+/*   Updated: 2025/01/02 12:35:32 by aalahyan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	multiple_moves(t_stack **a, t_stack **b, char *move)
+{
+	if (ft_strncmp(move, "r", 2) == 0)
+	{
+		rotate(a, 'a', false);
+		rotate(b, 'b', false);
+		ft_printf("rr\n");
+	}
+	else
+	{
+		reverse_rotate(a, 'a', false);
+		reverse_rotate(b, 'b', false);
+		ft_printf("rrr\n");
+	}
+}
 
 void	sort_three(t_stack **a)
 {

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aalahyan <aalahyan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 18:38:53 by aalahyan          #+#    #+#             */
-/*   Updated: 2025/01/02 12:05:52 by aalahyan         ###   ########.fr       */
+/*   Updated: 2025/01/02 12:22:54 by aalahyan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker_bonus.h"
 
 void	exit_code(int code)
 {
@@ -29,12 +29,12 @@ void	print_stack(t_stack *stack, char which)
 		return ;
 	}
 	ft_printf("stack %c: ", which);
-	while (temp->next != stack)
+	while (temp)
 	{
 		ft_printf("%d -> ", temp->value);
 		temp = temp->next;
 	}
-	ft_printf("%d\n", temp->value);
+	ft_printf("NULL\n");
 }
 
 int	main(int ac, char **av)
@@ -54,8 +54,7 @@ int	main(int ac, char **av)
 		exit_code(2);
 	if (!init_stack(&a, numbers, count))
 		exit_code(3);
-	init_positions(a, numbers, count);
-	push_swap(&a, &b, count);
+	check_push_swap(&a, &b);
 	free(numbers);
 	clear_stack(&a);
 	clear_stack(&b);
